@@ -1,0 +1,145 @@
+﻿@model kr.Models.testQuestion
+
+@{
+    ViewBag.Title = "DetailsCreateQuestions";
+}
+
+
+<h2>DetailsCreateQuestions</h2>
+<hr />
+<style type="text/css">
+    * {
+        padding-top: 0;
+    }
+
+    /*p {
+        padding: 10px;
+    }*/
+
+    #left {
+        position: absolute;
+        left: 0;
+        /*top: 0;*/
+        width: 50%;
+    }
+
+    #right {
+        position: absolute;
+        right: 0;
+        /*top: 0;*/
+        width: 50%;
+    }
+</style>
+
+<div id="left">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.test.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.test.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.test.end_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test.end_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.test.end_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test.end_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.test.count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test.count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.test.researcher.login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test.researcher.login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.test.status.status1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test.status.status1)
+        </dd>
+    </dl>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+<div id="right">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Display("Name")
+            </th>
+            <th>
+                @Html.Display("Text")
+            </th>
+            <th>
+                @Html.Display("Time")
+            </th>
+            <th>
+                @Html.Display("Type")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.questions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.question_type.type)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    <p>
+        @Html.ActionLink("Завершить тест", "Index","Tests")
+    </p>
+</div>

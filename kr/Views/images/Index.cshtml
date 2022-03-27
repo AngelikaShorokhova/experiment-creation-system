@@ -1,0 +1,42 @@
+﻿@model IEnumerable<kr.Models.image>
+
+@{
+    ViewBag.Title = "Варианты ответа";
+}
+
+<h2>Список вариантов ответа</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Идентификатор
+        </th>
+        <th>
+            Изображение
+        </th>
+        <th>
+            Вопрос
+        </th>
+        <th>
+            Тест
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            <img src=@item.link height="50">
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.question.test.name)
+        </td>
+    </tr>
+}
+
+</table>

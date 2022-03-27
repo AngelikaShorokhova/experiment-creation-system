@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="answer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="test_ins_id" Type="Int32" Nullable="false" />
+    <Property Name="image_id" Type="Int32" Nullable="false" />
+    <Property Name="question_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="image" Relationship="Self.FK_answer_image" FromRole="answer" ToRole="image" />
+    <NavigationProperty Name="question" Relationship="Self.FK_answer_question" FromRole="answer" ToRole="question" />
+    <NavigationProperty Name="test_instance" Relationship="Self.FK_answer_test_instance" FromRole="answer" ToRole="test_instance" />
+  </EntityType>
+  <EntityType Name="child">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="birth_date" Type="DateTime" Precision="0" />
+    <Property Name="school_type" Type="Int32" />
+    <Property Name="parent_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Int32" />
+    <NavigationProperty Name="gender1" Relationship="Self.FK_child_gender" FromRole="child" ToRole="gender" />
+    <NavigationProperty Name="school_type1" Relationship="Self.FK_child_school_type" FromRole="child" ToRole="school_type" />
+    <NavigationProperty Name="test_instance" Relationship="Self.FK_test_instance_child" FromRole="child" ToRole="test_instance" />
+  </EntityType>
+  <EntityType Name="gender">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="child" Relationship="Self.FK_child_gender" FromRole="gender" ToRole="child" />
+  </EntityType>
+  <EntityType Name="image">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="question_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="answer" Relationship="Self.FK_answer_image" FromRole="image" ToRole="answer" />
+    <NavigationProperty Name="question" Relationship="Self.FK_image_question" FromRole="image" ToRole="question" />
+  </EntityType>
+  <EntityType Name="question">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="test_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="type_id" Type="Int32" Nullable="false" />
+    <Property Name="time" Type="Int32" />
+    <NavigationProperty Name="answer" Relationship="Self.FK_answer_question" FromRole="question" ToRole="answer" />
+    <NavigationProperty Name="image" Relationship="Self.FK_image_question" FromRole="question" ToRole="image" />
+    <NavigationProperty Name="question_type" Relationship="Self.FK_question_question_type" FromRole="question" ToRole="question_type" />
+    <NavigationProperty Name="test" Relationship="Self.FK_question_test" FromRole="question" ToRole="test" />
+  </EntityType>
+  <EntityType Name="question_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="question" Relationship="Self.FK_question_question_type" FromRole="question_type" ToRole="question" />
+  </EntityType>
+  <EntityType Name="researcher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymic_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bitrh_date" Type="DateTime" Precision="0" />
+    <Property Name="job" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="count" Type="Int32" />
+    <NavigationProperty Name="test" Relationship="Self.FK_test_researcher" FromRole="researcher" ToRole="test" />
+  </EntityType>
+  <EntityType Name="school_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="child" Relationship="Self.FK_child_school_type" FromRole="school_type" ToRole="child" />
+  </EntityType>
+  <EntityType Name="status">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="test" Relationship="Self.FK_test_status" FromRole="status" ToRole="test" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="end_date" Type="DateTime" Precision="0" />
+    <Property Name="end_count" Type="Int32" />
+    <Property Name="count" Type="Int32" />
+    <Property Name="researcher_id" Type="Int32" />
+    <NavigationProperty Name="question" Relationship="Self.FK_question_test" FromRole="test" ToRole="question" />
+    <NavigationProperty Name="researcher" Relationship="Self.FK_test_researcher" FromRole="test" ToRole="researcher" />
+    <NavigationProperty Name="status" Relationship="Self.FK_test_status" FromRole="test" ToRole="status" />
+    <NavigationProperty Name="test_instance" Relationship="Self.FK_test_instance_test" FromRole="test" ToRole="test_instance" />
+  </EntityType>
+  <EntityType Name="test_instance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="test_id" Type="Int32" Nullable="false" />
+    <Property Name="child_id" Type="Int32" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Precision="3" />
+    <Property Name="end_time" Type="DateTime" Precision="3" />
+    <Property Name="result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="answer" Relationship="Self.FK_answer_test_instance" FromRole="test_instance" ToRole="answer" />
+    <NavigationProperty Name="child" Relationship="Self.FK_test_instance_child" FromRole="test_instance" ToRole="child" />
+    <NavigationProperty Name="test" Relationship="Self.FK_test_instance_test" FromRole="test_instance" ToRole="test" />
+  </EntityType>
+  <Association Name="FK_answer_image">
+    <End Role="image" Type="Self.image" Multiplicity="1" />
+    <End Role="answer" Type="Self.answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="image">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="answer">
+        <PropertyRef Name="image_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_answer_question">
+    <End Role="question" Type="Self.question" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="answer" Type="Self.answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="question">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="answer">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_answer_test_instance">
+    <End Role="test_instance" Type="Self.test_instance" Multiplicity="1" />
+    <End Role="answer" Type="Self.answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test_instance">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="answer">
+        <PropertyRef Name="test_ins_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_child_gender">
+    <End Role="gender" Type="Self.gender" Multiplicity="0..1" />
+    <End Role="child" Type="Self.child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gender">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="child">
+        <PropertyRef Name="gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_child_school_type">
+    <End Role="school_type" Type="Self.school_type" Multiplicity="0..1" />
+    <End Role="child" Type="Self.child" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="school_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="child">
+        <PropertyRef Name="school_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_test_instance_child">
+    <End Role="child" Type="Self.child" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="test_instance" Type="Self.test_instance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="child">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="test_instance">
+        <PropertyRef Name="child_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_image_question">
+    <End Role="question" Type="Self.question" Multiplicity="1" />
+    <End Role="image" Type="Self.image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="question">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="image">
+        <PropertyRef Name="question_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_question_question_type">
+    <End Role="question_type" Type="Self.question_type" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="question" Type="Self.question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="question_type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="question">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_question_test">
+    <End Role="test" Type="Self.test" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="question" Type="Self.question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="question">
+        <PropertyRef Name="test_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_test_researcher">
+    <End Role="researcher" Type="Self.researcher" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="test" Type="Self.test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="researcher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="test">
+        <PropertyRef Name="researcher_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_test_status">
+    <End Role="status" Type="Self.status" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="test" Type="Self.test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="test">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_test_instance_test">
+    <End Role="test" Type="Self.test" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="test_instance" Type="Self.test_instance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="test_instance">
+        <PropertyRef Name="test_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="answer" EntityType="Self.answer" />
+    <EntitySet Name="child" EntityType="Self.child" />
+    <EntitySet Name="gender" EntityType="Self.gender" />
+    <EntitySet Name="image" EntityType="Self.image" />
+    <EntitySet Name="question" EntityType="Self.question" />
+    <EntitySet Name="question_type" EntityType="Self.question_type" />
+    <EntitySet Name="researcher" EntityType="Self.researcher" />
+    <EntitySet Name="school_type" EntityType="Self.school_type" />
+    <EntitySet Name="status" EntityType="Self.status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="test" EntityType="Self.test" />
+    <EntitySet Name="test_instance" EntityType="Self.test_instance" />
+    <AssociationSet Name="FK_answer_image" Association="Self.FK_answer_image">
+      <End Role="image" EntitySet="image" />
+      <End Role="answer" EntitySet="answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_answer_question" Association="Self.FK_answer_question">
+      <End Role="question" EntitySet="question" />
+      <End Role="answer" EntitySet="answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_answer_test_instance" Association="Self.FK_answer_test_instance">
+      <End Role="test_instance" EntitySet="test_instance" />
+      <End Role="answer" EntitySet="answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_child_gender" Association="Self.FK_child_gender">
+      <End Role="gender" EntitySet="gender" />
+      <End Role="child" EntitySet="child" />
+    </AssociationSet>
+    <AssociationSet Name="FK_child_school_type" Association="Self.FK_child_school_type">
+      <End Role="school_type" EntitySet="school_type" />
+      <End Role="child" EntitySet="child" />
+    </AssociationSet>
+    <AssociationSet Name="FK_test_instance_child" Association="Self.FK_test_instance_child">
+      <End Role="child" EntitySet="child" />
+      <End Role="test_instance" EntitySet="test_instance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_image_question" Association="Self.FK_image_question">
+      <End Role="question" EntitySet="question" />
+      <End Role="image" EntitySet="image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_question_question_type" Association="Self.FK_question_question_type">
+      <End Role="question_type" EntitySet="question_type" />
+      <End Role="question" EntitySet="question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_question_test" Association="Self.FK_question_test">
+      <End Role="test" EntitySet="test" />
+      <End Role="question" EntitySet="question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_test_researcher" Association="Self.FK_test_researcher">
+      <End Role="researcher" EntitySet="researcher" />
+      <End Role="test" EntitySet="test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_test_status" Association="Self.FK_test_status">
+      <End Role="status" EntitySet="status" />
+      <End Role="test" EntitySet="test" />
+    </AssociationSet>
+    <AssociationSet Name="FK_test_instance_test" Association="Self.FK_test_instance_test">
+      <End Role="test" EntitySet="test" />
+      <End Role="test_instance" EntitySet="test_instance" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

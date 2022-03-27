@@ -1,0 +1,66 @@
+﻿@model kr.Models.test
+
+@{
+    ViewBag.Title = "Конструктов эксперимента";
+}
+
+<h2>Конструктов эксперимента</h2>
+
+<div>
+    <h4>Добавление вопросов</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Название")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        
+        @*<dt>
+            @Html.DisplayNameFor(model => model.end_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.count)
+        </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.researcher.login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.researcher.login)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayName("Статус")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status.status1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Завершить создание эксперимента", "Index")
+</p>

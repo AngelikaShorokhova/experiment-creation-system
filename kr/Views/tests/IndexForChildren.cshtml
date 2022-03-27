@@ -1,0 +1,68 @@
+﻿@model IEnumerable<kr.Models.test>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.researcher.login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status.status1)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.end_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.end_count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.researcher.login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status.status1)
+            </td>
+            <td>                
+                @Html.ActionLink("Начать тест", "Create", "Test_instance", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

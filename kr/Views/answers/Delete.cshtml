@@ -1,0 +1,48 @@
+﻿@model kr.Models.answer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>answer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.image.link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image.link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.test_instance.result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test_instance.result)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

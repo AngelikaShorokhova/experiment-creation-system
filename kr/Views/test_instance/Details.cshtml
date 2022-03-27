@@ -1,0 +1,79 @@
+﻿@model kr.Models.test_instance
+
+@{
+    ViewBag.Title = "Результаты эксперимента";
+}
+
+<h2>Результаты эксперимента</h2>
+<div>
+    <style>
+        dt {
+            text-align: left;
+        }
+    </style>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Фамилия")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.child.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Имя")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.child.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Отчество")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.child.patronymic_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Эксперимент")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Начало тестирования")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Окончание тестирования")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Результат тестирования тестирования")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.result)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("ExportPersonalInfoPDF", "Test_Instance", new { id = Model.id })">Выгрузить информацию о прохождении тестирования</a>
+</p>
+@*<p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

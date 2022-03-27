@@ -1,0 +1,42 @@
+﻿@model kr.Models.answer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>answer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.image.link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image.link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.question.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.question.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.test_instance.result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.test_instance.result)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

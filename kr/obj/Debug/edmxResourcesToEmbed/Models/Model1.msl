@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище dbModelContainer" CdmEntityContainer="dbEntities">
+    <EntitySetMapping Name="answer">
+      <EntityTypeMapping TypeName="dbModel.answer">
+        <MappingFragment StoreEntitySet="answer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="test_ins_id" ColumnName="test_ins_id" />
+          <ScalarProperty Name="image_id" ColumnName="image_id" />
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="child">
+      <EntityTypeMapping TypeName="dbModel.child">
+        <MappingFragment StoreEntitySet="child">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="patronymic_name" ColumnName="patronymic_name" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="school_type" ColumnName="school_type" />
+          <ScalarProperty Name="parent_name" ColumnName="parent_name" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gender">
+      <EntityTypeMapping TypeName="dbModel.gender">
+        <MappingFragment StoreEntitySet="gender">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="image">
+      <EntityTypeMapping TypeName="dbModel.image">
+        <MappingFragment StoreEntitySet="image">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="question">
+      <EntityTypeMapping TypeName="dbModel.question">
+        <MappingFragment StoreEntitySet="question">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="time" ColumnName="time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="question_type">
+      <EntityTypeMapping TypeName="dbModel.question_type">
+        <MappingFragment StoreEntitySet="question_type">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="researcher">
+      <EntityTypeMapping TypeName="dbModel.researcher">
+        <MappingFragment StoreEntitySet="researcher">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="patronymic_name" ColumnName="patronymic name" />
+          <ScalarProperty Name="bitrh_date" ColumnName="bitrh date" />
+          <ScalarProperty Name="job" ColumnName="job" />
+          <ScalarProperty Name="count" ColumnName="count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="school_type">
+      <EntityTypeMapping TypeName="dbModel.school_type">
+        <MappingFragment StoreEntitySet="school_type">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="status">
+      <EntityTypeMapping TypeName="dbModel.status">
+        <MappingFragment StoreEntitySet="status">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="status1" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="dbModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="test">
+      <EntityTypeMapping TypeName="dbModel.test">
+        <MappingFragment StoreEntitySet="test">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="end_count" ColumnName="end_count" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="researcher_id" ColumnName="researcher_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="test_instance">
+      <EntityTypeMapping TypeName="dbModel.test_instance">
+        <MappingFragment StoreEntitySet="test_instance">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+          <ScalarProperty Name="child_id" ColumnName="child_id" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="result" ColumnName="result" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,90 @@
+﻿@model kr.Models.child
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>child</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.patronymic_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patronymic_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birth_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birth_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.parent_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.parent_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender1.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender1.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.school_type1.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.school_type1.type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
