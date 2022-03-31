@@ -1,4 +1,4 @@
-﻿@model kr.Models.test_instance
+﻿@model kr.Models.test_insAnswer
 
 @{
     ViewBag.Title = "Результаты эксперимента";
@@ -18,7 +18,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.child.surname)
+            @Html.DisplayFor(model => model.test_Instance.child.surname)
         </dd>
 
         <dt>
@@ -26,7 +26,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.child.name)
+            @Html.DisplayFor(model => model.test_Instance.child.name)
         </dd>
 
         <dt>
@@ -34,7 +34,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.child.patronymic_name)
+            @Html.DisplayFor(model => model.test_Instance.child.patronymic_name)
         </dd>
 
         <dt>
@@ -42,7 +42,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.test.name)
+            @Html.DisplayFor(model => model.test_Instance.test.name)
         </dd>
 
         <dt>
@@ -50,7 +50,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.start_time)
+            @Html.DisplayFor(model => model.test_Instance.start_time)
         </dd>
 
         <dt>
@@ -58,7 +58,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.end_time)
+            @Html.DisplayFor(model => model.test_Instance.end_time)
         </dd>
 
         <dt>
@@ -66,14 +66,41 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.result)
+            @Html.DisplayFor(model => model.test_Instance.result)
         </dd>
 
     </dl>
 </div>
 <p>
-    <a href="@Url.Action("ExportPersonalInfoPDF", "Test_Instance", new { id = Model.id })">Выгрузить информацию о прохождении тестирования</a>
+    <a href="@Url.Action("ExportPersonalInfoPDF", "Test_Instance", new { id = Model.test_Instance.id })">Выгрузить информацию о прохождении тестирования</a>
 </p>
-@*<p>
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
+
+<div>
+    <table class="table" width="50%">
+        <tr>
+            <th>
+                @Html.DisplayName("Вопрос")
+            </th>
+            <th>
+                @Html.DisplayName("Изображение")
+            </th>
+        </tr>
+
+        @foreach (var item in Model.answers)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.question.name)
+                </td>
+                <td>
+                    <img src=@item.image.link height="50">
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<p>
+    @Html.ActionLink("Вернуть к списку результатов", "Index")
+</p>

@@ -17,6 +17,7 @@ namespace kr.Controllers
         // GET: questions
         public ActionResult Index()
         {
+
             var question = db.question.Include(q => q.question_type).Include(q => q.test);
             return View(question.ToList());
         }
@@ -37,10 +38,11 @@ namespace kr.Controllers
         }
 
         // GET: questions/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.type_id = new SelectList(db.question_type, "id", "type");
-            ViewBag.test_id = new SelectList(db.test, "id", "name");
+            ViewBag.type_id = new SelectList(db.question_type, "id", "type"); 
+            var test = db.test.Where(q => q.id == id);
+            ViewBag.test_id = new SelectList(test, "id", "name");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace kr.Controllers
                 question.test_id = test_id;
                 db.question.Add(question);
                 db.SaveChanges();
-                return RedirectToAction("DetailsCreateQuestions", "Tests", new { id = test_id });
+                return RedirectToAction("DetailsCreateImages", "Questions", new { id = question.id });
             }
 
             ViewBag.type_id = new SelectList(db.question_type, "id", "type", question.type_id);
@@ -133,6 +135,22 @@ namespace kr.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult DetailsCreateImages(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            question question = db.question.Find(id);
+            if (question == null)
+            {
+                return HttpNotFound();
+            }
+            var images = db.image.Include(i => i.question).Include(i => i.question.test).Where(q => q.question_id == question.id);
+            questionImage questionImage = new questionImage { question = question, images = images.ToList() };
+            return View(questionImage);
         }
     }
 }

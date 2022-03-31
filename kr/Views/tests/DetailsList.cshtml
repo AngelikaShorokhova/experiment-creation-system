@@ -1,0 +1,73 @@
+﻿@model kr.Models.test
+
+@{
+    ViewBag.Title = "DetailsList";
+}
+
+<h2>DetailsList</h2>
+
+<div>
+    <h4>test</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.researcher.login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.researcher.login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status.status1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status.status1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("SaveEndOfBase", "SaveEndOfBase", new { id = Model.id })
+</p>

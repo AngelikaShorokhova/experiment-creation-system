@@ -207,6 +207,7 @@
     <Compile Include="Models\answer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AppDbInitializer.cs" />
     <Compile Include="Models\child.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -218,6 +219,7 @@
     <Compile Include="Models\image.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\makeAnswer.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -257,6 +259,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\testQuestion.cs" />
+    <Compile Include="Models\test_insAnswer.cs" />
     <Compile Include="Models\test_instance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -378,12 +381,10 @@
     <Content Include="Views\answers\Index.cshtml" />
     <Content Include="Views\tests\DetailsCreateQuestions.cshtml" />
     <Content Include="Views\tests\IndexForChildren.cshtml" />
-    <Content Include="Views\test_instance1\Create.cshtml" />
-    <Content Include="Views\test_instance1\Delete.cshtml" />
-    <Content Include="Views\test_instance1\Details.cshtml" />
-    <Content Include="Views\test_instance1\Edit.cshtml" />
-    <Content Include="Views\test_instance1\Index.cshtml" />
     <Content Include="Views\test_instance\exportResults.cshtml" />
+    <Content Include="Views\questions\DetailsCreateImages.cshtml" />
+    <Content Include="Views\tests\DetailsList.cshtml" />
+    <Content Include="Views\test_instance\DetailsResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

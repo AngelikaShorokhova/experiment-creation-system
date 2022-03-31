@@ -37,15 +37,16 @@ namespace kr.Controllers
         }
 
         // GET: answers/Create
-        public ActionResult Create(int q_id)
+        public ActionResult Create(int test_ins_id, int q_id)
         {
-            test_instance test_Instance = db.test_instance.First();
-            question question = db.question.First();
-            var image = db.image.Include(i => i.question).Where(q => q.question_id == question.id);
-            childrenQuestion childrenQuestion = new childrenQuestion { images = image.ToList(), test_Instance = test_Instance, question = question };
+            var test_Instance = db.test_instance.Where(q => q.id == test_ins_id);
+            var question = db.question.Where(q => q.id == q_id);
+            var image = db.image.Include(i => i.question).Where(q => q.question_id == q_id);
+            childrenQuestion childrenQuestion = new childrenQuestion { images = image.ToList(), test_Instance = test_Instance.First(), question = question.First() };
             ViewBag.image_id = new SelectList(db.image, "id", "link");
-            ViewBag.question_id = new SelectList(db.question.Where(i => i.id == q_id), "id", "name");
-            ViewBag.test_ins_id = new SelectList(db.test_instance, "id", "result");
+            ViewBag.question_id = new SelectList(question, "id", "name");
+            ViewBag.question_desc = new SelectList(question, "id", "text");
+            ViewBag.test_ins_id = new SelectList(test_Instance, "id", "test.name");
             return View(childrenQuestion);
         }
 
@@ -54,21 +55,33 @@ namespace kr.Controllers
         // Дополнительные сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,test_ins_id,image_id,question_id")] answer answer)
-        {
-            if (ModelState.IsValid)
+        public ActionResult Create([Bind(Include = "id,test_ins_id,image_id,question_id")] answer answer, string var)
+        {            
+            if (ModelState.IsValid && !string.IsNullOrEmpty(var))
             {
-                answer.test_ins_id = 1;
-                answer.image_id = 1;
+                var s = var.Split(' ');
+                answer.image_id = int.Parse(s[0]);
                 db.answer.Add(answer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (answer.question_id == 6006)
+                    return RedirectToAction("Details", "Test_Instance", new { id = answer.test_ins_id });
+                else
+                {
+                    int id = answer.question_id;
+                    id++;
+                    return RedirectToAction("Create", "Answers", new { test_ins_id = answer.test_ins_id, q_id = id });
+                }
             }
 
-            ViewBag.image_id = new SelectList(db.image, "id", "link", answer.image_id);
-            ViewBag.question_id = new SelectList(db.question, "id", "name", answer.question_id);
-            ViewBag.test_ins_id = new SelectList(db.test_instance, "id", "result", answer.test_ins_id);
-            return View(answer);
+            var test_Instance = db.test_instance.Where(q => q.id == 1);
+            question question = db.question.First();
+            var image = db.image.Include(i => i.question).Where(q => q.question_id == question.id);
+            childrenQuestion childrenQuestion = new childrenQuestion { images = image.ToList(), test_Instance = test_Instance.First(), question = question };
+            ViewBag.image_id = new SelectList(db.image, "id", "link");
+            ViewBag.question_id = new SelectList(db.question.Where(i => i.id == 1), "id", "name");
+            ViewBag.test_ins_id = new SelectList(test_Instance, "id", "test.name");
+            return View(childrenQuestion);
         }
 
         // GET: answers/Edit/5

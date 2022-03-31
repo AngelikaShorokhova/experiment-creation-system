@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<kr.Models.test>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexForChilren";
 }
 
-<h2>Index</h2>
+<h2>IndexForChilren</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -25,12 +25,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.count)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.researcher.login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status.status1)
         </th>
         <th></th>
     </tr>
@@ -54,13 +48,9 @@
                 @Html.DisplayFor(modelItem => item.count)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.researcher.login)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status.status1)
-            </td>
-            <td>                
-                @Html.ActionLink("Начать тест", "Create", "Test_instance", new { id = item.id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
             </td>
         </tr>
     }

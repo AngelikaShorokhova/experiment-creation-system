@@ -1,0 +1,77 @@
+﻿@model kr.Models.questionImage
+
+@{
+    ViewBag.Title = "Создание вопроса";
+}
+<h2>Создание вопроса</h2>
+
+<hr />
+<style type="text/css">
+    .col-1-2 {
+        width: 50%;
+        float: left;
+    }
+</style>
+
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-1-2">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayName("Название")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.question.name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayName("Описание")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.question.text)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayName("Тип вопроса")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.question.question_type.type)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayName("Эксперимент")
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.question.test.name)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-1-2">
+                <p>
+                    @Html.ActionLink("Загрузить изображение", "Create", "Images", new { id = Model.question.id }, null)
+                </p>
+                <table class="table">
+                    @foreach (var item in Model.images)
+                    {
+                        <tr>
+                            <td>
+                                <img src=@item.link height="70">
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <p>
+                @Html.ActionLink("Завершить создание вопроса", "DetailsCreateQuestions", "Tests", new { id = Model.question.test.id }, null)
+            </p>
+        </div>
+    </div>
+</div>

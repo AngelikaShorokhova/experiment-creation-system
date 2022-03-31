@@ -1,71 +1,64 @@
 ﻿@model kr.Models.question
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Создание вопроса";
 }
-
-<h2>Create</h2>
-
+<h2>Создание вопроса</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>question</h4>
+    <div class="form-horizontal" style="text-align:left">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.test_id, "test_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        <div class="form-group" style="text-align:left">
+            @Html.Label("Эксперимент", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-20">
                 @Html.DropDownList("test_id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.test_id, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.Label("Заголовок вопроса", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-20">
                 @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.Label("Текст вопроса", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-20">
                 @Html.EditorFor(model => model.text, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.text, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.type_id, "type_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.Label("Тип вопроса", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-20">
                 @Html.DropDownList("type_id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.type_id, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.time, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.Label("Количество времени на вопрос", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-20">
                 @Html.EditorFor(model => model.time, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-20">
+                <input type="submit" value="Сохранить данные" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

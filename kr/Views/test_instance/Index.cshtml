@@ -1,59 +1,68 @@
 ﻿@model IEnumerable<kr.Models.test_instance>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Результаты экспериментов";
 }
 
-<h2>Index</h2>
+<h2>Результаты экспериментов</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Поиск: @Html.TextBox("SearchString")
+        <input type="submit" value="Найти" />
+    </p>
+}
 <p>
-    @Html.ActionLink("Export", "exportResults")
-</p>
-<p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Выгрузить результаты", "exportResults")
 </p>
 <table class="table">
     <tr>
+        @if (User.IsInRole("admin"))
+        {
+            <th>
+                @Html.DisplayName("Идентификатор")
+            </th>
+        }
         <th>
-            @Html.DisplayNameFor(model => model.start_time)
+            @Html.DisplayName("Эксперимент")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.end_time)
+            @Html.DisplayName("Начало эксперимента")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.result)
+            @Html.DisplayName("Окончание эксперимента")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.child.login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.test.name)
+            @Html.DisplayName("Результат")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.start_time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.end_time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.result)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.child.login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.test.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            @if (User.IsInRole("admin"))
+            {
+                <th>
+                    @Html.DisplayFor(modelItem => item.child.id)
+                </th>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.test.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.start_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.end_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.result)
+            </td>
+            <td>
+                @Html.ActionLink("Просмотреть результат", "DetailsResult", new { id = item.id });
+            </td>
+        </tr>
+    }
 
 </table>

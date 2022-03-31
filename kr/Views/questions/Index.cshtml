@@ -18,6 +18,9 @@
             @Html.DisplayName("Тип вопроса")
         </th>
         <th>
+            @Html.DisplayName("Тип вопроса")
+        </th>
+        <th>
             @Html.DisplayName("Действия")
         </th>
         <th></th>
@@ -30,6 +33,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.question_type.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.test.name)
         </td>
         <td>
             @Html.ActionLink("Удалить", "Delete", new { id=item.id })

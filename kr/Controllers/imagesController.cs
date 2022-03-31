@@ -37,9 +37,10 @@ namespace kr.Controllers
         }
 
         // GET: images/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.question_id = new SelectList(db.question, "id", "name");
+            var question = db.question.Where(q => q.id == id);
+            ViewBag.question_id = new SelectList(question, "id", "name");
             return View();
         }
 
@@ -52,9 +53,10 @@ namespace kr.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.image.Add(image);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DetailsCreateImages", "Questions", new { id = image.question_id });
             }
 
             ViewBag.question_id = new SelectList(db.question, "id", "name", image.question_id);

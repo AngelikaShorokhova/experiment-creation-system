@@ -15,9 +15,16 @@ namespace kr.Controllers
         private dbEntities db = new dbEntities();
 
         // GET: children
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var child = db.child.Include(c => c.gender1).Include(c => c.school_type1);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                child = child.Where(s => s.surname.Contains(searchString)
+                                       || s.name.Contains(searchString)
+                                       || s.id.ToString().Contains(searchString)
+                                       || s.id.ToString().Contains(searchString));
+            }
             return View(child.ToList());
         }
 
@@ -56,7 +63,7 @@ namespace kr.Controllers
                 child.login = User.Identity.Name;
                 db.child.Add(child);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Tests");
             }
 
             ViewBag.gender = new SelectList(db.gender, "id", "name", child.gender);

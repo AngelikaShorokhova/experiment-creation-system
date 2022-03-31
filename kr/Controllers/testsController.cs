@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using kr.Models;
+using System.IO;
+using ClosedXML.Excel;
 
 namespace kr.Controllers
 {
@@ -14,7 +16,16 @@ namespace kr.Controllers
     {
         private dbEntities db = new dbEntities();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
+        {
+            var test = db.test.Include(t => t.researcher).Include(t => t.status);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                test = test.Where(s => s.name.Contains(searchString));
+            }
+            return View(test.ToList());
+        }
+        public ActionResult IndexForChilren()
         {
             var test = db.test.Include(t => t.researcher).Include(t => t.status);
             return View(test.ToList());
@@ -22,6 +33,20 @@ namespace kr.Controllers
 
         // GET: tests/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            test test = db.test.Find(id);
+            if (test == null)
+            {
+                return HttpNotFound();
+            }
+            return View(test);
+        }
+
+        public ActionResult DetailsList(int? id)
         {
             if (id == null)
             {
@@ -147,5 +172,6 @@ namespace kr.Controllers
             testQuestion testQuestion = new testQuestion { test = test, questions = questions.ToList() };
             return View(testQuestion);
         }
+                
     }
 }
